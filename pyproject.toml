@@ -1,0 +1,18 @@
+[project]
+name = "notee"
+version = "0.1.0"
+description = "Python CLI to create md files with terminal in seconds"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.12"
+dependencies = [
+    "mdutils>=1.8.1",
+    "typer>=0.24.1"
+]
+
+[project.scripts]
+notee = "notee.main:app"
+
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"
