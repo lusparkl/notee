@@ -1,0 +1,1 @@
+TEMPLATES = ["book", "idea", "movie", "source", "todo"]
