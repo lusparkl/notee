@@ -1,6 +1,5 @@
 from notee.cli.utils.logs import send_success, send_process, send_error, send_warning
 from notee.cli.utils.disk_operations import create_config_file, is_folder_exists
-from notee.cli.utils.templates_list import TEMPLATES
 from pathlib import Path
 from typer import Typer
 import configparser
@@ -10,8 +9,12 @@ app = Typer()
  
 @app.command("setup")
 def setup():
+    """Setup notee before using it."""
     config_path = create_config_file()
     config = configparser.ConfigParser()
+    config["patches"] = {}
+    config.add_section("settings")
+    TEMPLATES = ["book", "idea", "movie", "source", "todo"]
 
     send_process("Now it's time to setup your notes folder.")
     path = typer.prompt("Enter folder path")
@@ -22,9 +25,6 @@ def setup():
     
     send_process("Create different folders for each temlate type?")
     different_folders = typer.confirm("Create different folders?")
-
-    config["patches"] = {}
-    config.add_section("settings")
     
     if different_folders:
         for template in TEMPLATES:

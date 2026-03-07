@@ -1,6 +1,8 @@
-import typer
-import configparser
 from pathlib import Path
+import configparser
+import typer
+
+
 
 def get_config() -> configparser.ConfigParser:
     config = configparser.ConfigParser()

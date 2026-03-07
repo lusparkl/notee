@@ -1,20 +1,22 @@
-from typer import Typer
-import typer
-from notee.cli.utils.logs import send_process, send_warning
+from notee.cli.utils.logs import send_process, send_warning, send_success
 from notee.templates.book import create_book_note
+from typing import Annotated
+import typer
 
-
-app = Typer()
+app = typer.Typer()
 
 @app.command("book")
-def create_book(title: str):
-    send_process(f"Alright, creating book with title {title}. Press ENTER to skip property.")
-    author = typer.prompt("What is the author of the book?")
-    notes = typer.prompt("Write some of your notes about book")
-    tags = typer.prompt("Now enter tags for this file, separate them by spaces")
+def create_book(title: Annotated[str, typer.Argument(help="Title and name for your book note.")]):
+    """
+    Create book review note
+    """
+    send_process(f"Alright, creating book with title {title}.")
+    author = typer.prompt("What is the author of the book?", default="")
+    notes = typer.prompt("Write some of your notes about book", default="")
+    tags = typer.prompt("Now enter tags for this file, separate them by spaces", default="")
     rating = None
     while not rating:
-        resp = typer.prompt("Enter rating for this book from 0 to 10")
+        resp = typer.prompt("Enter rating for this book from 0 to 10", default="")
         try:
             if int(resp) >=0 and int(resp) <= 10:
                 rating = int(resp)
@@ -25,5 +27,6 @@ def create_book(title: str):
         except:
             send_warning("Please enter number from 0 to 10 to rate your book.")
     
-    create_book_note(title=title, author=author, notes=notes, tags=tags, rating=rating)
+    create_book_note(title, author, notes, tags, rating)
+    send_success(f"Created note {title}")
     

@@ -5,8 +5,7 @@ from datetime import datetime
 
 def create_book_note(title: str, author: str = None, notes: str = None, tags: str = None, rating: int = None):
     data = f"""
-# {title}
-{datetime.now()}
+{datetime.now().strftime("%Y-%m-%d %H:%M")}
 {process_tags(tags) if tags else ""}
 
 # {title}
