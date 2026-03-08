@@ -4,8 +4,9 @@ from mdutils.fileutils.fileutils import MarkDownFile
 from datetime import datetime
 
 def create_book_note(title: str, author: str = None, notes: str = None, tags: str = None, rating: int = None):
+    date = datetime.now().strftime("%Y-%m-%d %H:%M")
     data = f"""
-{datetime.now().strftime("%Y-%m-%d %H:%M")}
+{date}
 {process_tags(tags) if tags else ""}
 
 # {title}
@@ -21,4 +22,6 @@ def create_book_note(title: str, author: str = None, notes: str = None, tags: st
     config = get_config()
     file = MarkDownFile(name=title, dirname=config["patches"]["book"])
     file.append_end(data)
+
+    return [data, f"{config["patches"]["book"]}/{title}.md", date]
 

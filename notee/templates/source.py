@@ -4,8 +4,9 @@ from mdutils.fileutils.fileutils import MarkDownFile
 from datetime import datetime
 
 def create_source_note(title: str, notes: str = None, tags: str = None, links: str = None):
+    date = datetime.now().strftime("%Y-%m-%d %H:%M")
     data = f"""
-{datetime.now().strftime("%Y-%m-%d %H:%M")}
+{date}
 {process_tags(tags) if tags else ""}
 
 # {title}
@@ -19,4 +20,6 @@ def create_source_note(title: str, notes: str = None, tags: str = None, links: s
     config = get_config()
     file = MarkDownFile(name=title, dirname=config["patches"]["source"])
     file.append_end(data)
+
+    return [data, f"{config["patches"]["source"]}/{title}.md", date]
 

@@ -4,8 +4,9 @@ from notee.cli.utils.config import get_config
 from datetime import datetime
 
 def create_todo_note(title, description: str = None, tags: str = None):
+    date = datetime.now().strftime("%Y-%m-%d %H:%M")
     data = f"""
-{datetime.now().strftime("%Y-%m-%d %H:%M")}
+{date}
 {process_tags(tags) if tags else ""}
 
 # {title}
@@ -15,3 +16,5 @@ def create_todo_note(title, description: str = None, tags: str = None):
     config = get_config()
     file = MarkDownFile(name=title, dirname=config["patches"]["todo"])
     file.append_end(data)
+
+    return [data, f"{config["patches"]["todo"]}/{title}.md", date]

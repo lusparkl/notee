@@ -4,8 +4,9 @@ from mdutils.fileutils.fileutils import MarkDownFile
 from datetime import datetime
 
 def create_movie_note(title: str, notes: str = None, tags: str = None, rating: int = None):
+    date = datetime.now().strftime("%Y-%m-%d %H:%M")
     data = f"""
-{datetime.now().strftime("%Y-%m-%d %H:%M")}
+{date}
 {process_tags(tags) if tags else ""}
 
 # {title}
@@ -17,4 +18,6 @@ def create_movie_note(title: str, notes: str = None, tags: str = None, rating: i
     config = get_config()
     file = MarkDownFile(name=title, dirname=config["patches"]["movie"])
     file.append_end(data)
+
+    return [data, f"{config["patches"]["movie"]}/{title}.md", date]
 

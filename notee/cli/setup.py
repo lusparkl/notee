@@ -1,5 +1,6 @@
 from notee.cli.utils.logs import send_success, send_process, send_error, send_warning
 from notee.cli.utils.disk_operations import create_config_file, is_folder_exists
+from notee.db.create_db import create_db
 from pathlib import Path
 from typer import Typer
 import configparser
@@ -10,6 +11,7 @@ app = Typer()
 @app.command("setup")
 def setup():
     """Setup notee before using it."""
+    create_db()
     config_path = create_config_file()
     config = configparser.ConfigParser()
     config["patches"] = {}
@@ -23,6 +25,7 @@ def setup():
         send_error(f"Can't find folder {path}, please provide already created folder.")
         return
     
+    config["patches"]["base_folder"] = path
     send_process("Create different folders for each temlate type?")
     different_folders = typer.confirm("Create different folders?")
     
