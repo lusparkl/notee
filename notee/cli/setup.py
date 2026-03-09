@@ -11,7 +11,6 @@ app = Typer()
 @app.command("setup")
 def setup():
     """Setup notee before using it."""
-    create_db()
     config_path = create_config_file()
     config = configparser.ConfigParser()
     config["patches"] = {}
@@ -46,6 +45,15 @@ def setup():
     else:
         config["settings"]["obsidian_mode"] = "n"
     
+    send_process("Now enter path for the database folder (we'll need it for search feature and AI interactions)")
+    db_path = typer.prompt("Database folder")
+    exists = is_folder_exists(path)
+    if not exists:
+        send_error(f"Can't find folder {path}, please provide already created folder.")
+        return
+    config["settings"]["db_path"] = db_path
+    create_db(db_path)
+
     with open(config_path, 'w', encoding='utf-8') as configfile:
         config.write(configfile)
 

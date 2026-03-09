@@ -5,6 +5,8 @@ from notee.cli.create_source import app as source_app
 from notee.cli.create_todo import app as todo_app
 from notee.cli.setup import app as setup_app
 from notee.cli.search import app as search_app
+from notee.cli.togle import app as togle_app
+from notee.cli.scan import app as scan_app
 from typer import Typer
 
 app = Typer()
@@ -16,6 +18,8 @@ app.add_typer(movie_app)
 app.add_typer(source_app)
 app.add_typer(todo_app)
 app.add_typer(search_app)
+app.add_typer(togle_app)
+app.add_typer(scan_app)
 
 
 if __name__ == "__main__":

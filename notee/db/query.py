@@ -1,16 +1,17 @@
-from notee.db.utils import get_name_from_path
+from notee.cli.utils.config import get_config
 import chromadb
 
 
 def search_in_db(query: str) -> list:
-    client = chromadb.Client()
+    config = get_config()
+    db_path = config["settings"]["db_path"]
+    client = chromadb.PersistentClient(db_path)
     collection = client.get_collection("notee")
-    result = collection.query(query_texts=query, n_results=5)
+    result = collection.query(query_texts=query, n_results=3)
     
     responce = []
-    for metadata in result["metadatas"]:
+    for metadata in result["metadatas"][0]:
         path = metadata["path"]
-        name = get_name_from_path(path)
-        responce.append({"name": name, "path": path})
+        responce.append(path)
     
     return responce

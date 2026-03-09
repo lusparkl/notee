@@ -14,6 +14,6 @@ def search(query: Annotated[str, typer.Argument(help="Query for your search requ
         return
     
     send_success("Here is your notes:")
-    for note in responce:
-        send_process(f"{note["name"]} - {note["path"]}")
+    for path in responce:
+        send_process(path)
 

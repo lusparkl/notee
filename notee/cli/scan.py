@@ -5,8 +5,9 @@ import typer
 
 app = typer.Typer()
 
-app.command("scan")
+@app.command("scan")
 def scan_folder():
+    """Scan folder to add notes to the db if they're not already there."""
     config = get_config()
     notes_folder = config["patches"]["base_folder"]
     n_new_files = scan(notes_folder)
