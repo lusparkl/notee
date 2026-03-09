@@ -10,7 +10,7 @@ def togle_obsidian_mode(
         on: bool = typer.Option(None, "--on", help="Enable obsidian mode."),
         off: bool = typer.Option(None, "--off", help="Disable obsidian mode.")
 ):
-    """Togle between creating notes for obsidian or regular md format.
+    """Toggle between creating notes for obsidian or regular md format.
     --on - Enable obsidian mode
     --off - Disable obsidian mode
     """

@@ -11,4 +11,7 @@ def scan_folder():
     config = get_config()
     notes_folder = config["patches"]["base_folder"]
     n_new_files = scan(notes_folder)
-    send_success(f"Scanned your vault, added {n_new_files} new files to the db!")
+    if n_new_files:
+        send_success(f"Scanned your vault, added {n_new_files} new files to the db!")
+    else:
+        send_success("Scanned your vault. Nothing new appeared from last scan.")

@@ -1,12 +1,12 @@
-from notee.cli.create_book import app as book_app
-from notee.cli.create_idea import app as idea_app
-from notee.cli.create_movie import app as movie_app
-from notee.cli.create_source import app as source_app
-from notee.cli.create_todo import app as todo_app
-from notee.cli.setup import app as setup_app
-from notee.cli.search import app as search_app
-from notee.cli.togle import app as togle_app
-from notee.cli.scan import app as scan_app
+from notee.cli.commands.create_book import app as book_app
+from notee.cli.commands.create_idea import app as idea_app
+from notee.cli.commands.create_movie import app as movie_app
+from notee.cli.commands.create_source import app as source_app
+from notee.cli.commands.create_todo import app as todo_app
+from notee.cli.commands.setup import app as setup_app
+from notee.cli.commands.search import app as search_app
+from notee.cli.commands.toggle import app as togle_app
+from notee.cli.commands.scan import app as scan_app
 from typer import Typer
 
 app = Typer()
