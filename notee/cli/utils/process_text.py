@@ -1,4 +1,5 @@
 from notee.cli.utils.config import get_config
+import re
 
 def process_tags(tags: str):
     config = get_config()
@@ -26,3 +27,12 @@ def process_if_exists(cond, text):
     if cond:
         return text
     return ""
+
+def convert_obsidian_tags(text):
+    pattern = r"\[\[(.*?)\]\]"
+
+    def replace_with_hash(match):
+        tag = match.group(1).strip()
+        return f"#{tag}"
+
+    return re.sub(pattern, replace_with_hash, text)
