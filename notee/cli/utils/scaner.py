@@ -20,4 +20,6 @@ def scan(folder_path: str):
                     add_from_file(entity.path)
                     n_new_files += 1
     return n_new_files
+
+
     
