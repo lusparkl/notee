@@ -5,7 +5,7 @@ import typer
 
 app = typer.Typer()
 
-app.command("obsidian_mode")
+@app.command("obsidian_mode")
 def togle_obsidian_mode(
         on: bool = typer.Option(None, "--on", help="Enable obsidian mode."),
         off: bool = typer.Option(None, "--off", help="Disable obsidian mode.")
@@ -29,7 +29,7 @@ def togle_obsidian_mode(
         save_config(config)
         send_success("Disabled obsidian mode👌")
 
-app.command("different_folders")
+@app.command("different_folders")
 def togle_different_folders(
         on: bool = typer.Option(None, "--on", help="Enable different folders."),
         off: bool = typer.Option(None, "--off", help="Disable different folders.")
@@ -57,5 +57,25 @@ def togle_different_folders(
         for template in TEMPLATES:
             config["patches"][template] = base_path
             send_success("Disabled different folders. Your notes will be saving into base folder from now.")
+    
+    save_config(config)
+
+@app.command("ai_module")
+def togle_different_folders(
+        on: bool = typer.Option(None, "--on", help="Enable different folders."),
+        off: bool = typer.Option(None, "--off", help="Disable different folders.")
+):
+    
+    if bool(on) == bool(off):
+        send_error("Use only --on or --off flags please.")
+        return
+    
+    config = get_config()
+    if on:
+        config["settings"]["AI_module"] = "y"
+        send_success("Your AI module is on now. Please don't forget to use <notee setup_ai> if you haven't yet.")
+    else:
+        config["settings"]["AI_module"] = "n"
+        send_success("Your AI module is off now. Use <notee ai_module --on> to turn it on again.")
     
     save_config(config)

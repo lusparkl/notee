@@ -8,6 +8,7 @@ from notee.cli.commands.search import app as search_app
 from notee.cli.commands.toggle import app as togle_app
 from notee.cli.commands.scan import app as scan_app
 from notee.cli.commands.open import app as open_app
+from notee.cli.commands.ask import app as ask_app
 from typer import Typer
 
 app = Typer()
@@ -22,6 +23,7 @@ app.add_typer(search_app)
 app.add_typer(togle_app)
 app.add_typer(scan_app)
 app.add_typer(open_app)
+app.add_typer(ask_app)
 
 
 if __name__ == "__main__":

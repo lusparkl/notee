@@ -1,6 +1,7 @@
 from notee.cli.utils.logs import send_success, send_process, send_error, send_warning
 from notee.cli.utils.disk_operations import create_config_file, is_folder_exists
 from notee.db.create_db import create_db
+from notee.ai.setup_ai import setup_ai
 from pathlib import Path
 from typer import Typer
 import configparser
@@ -54,6 +55,18 @@ def setup():
     config["settings"]["db_path"] = db_path
     create_db(db_path)
 
+    send_process("Do you want to use notee AI module?(You can change it later)")
+    ai_module = typer.confirm("Use ai module?")
+
+    if ai_module:
+        provider, model, api_key = setup_ai()
+        config["settings"]["AI_module"] = "y"
+        config["settings"]["AI_provider"] = provider
+        config["settings"]["AI_model"] = model
+        config["settings"]["AI_api_key"] = api_key
+    else:
+        config["settings"]["AI_module"] = "n"    
+    
     with open(config_path, 'w', encoding='utf-8') as configfile:
         config.write(configfile)
 
