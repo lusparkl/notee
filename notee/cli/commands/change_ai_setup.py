@@ -7,6 +7,7 @@ app = typer.Typer()
 
 @app.command("setup_ai")
 def change_ai_setup():
+    """Change AI provider/api key"""
     config = get_config()
     provider, model, api_key = setup_ai()
     config["settings"]["AI_module"] = "y"

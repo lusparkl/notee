@@ -9,6 +9,8 @@ from notee.cli.commands.toggle import app as togle_app
 from notee.cli.commands.scan import app as scan_app
 from notee.cli.commands.open import app as open_app
 from notee.cli.commands.ask import app as ask_app
+from notee.cli.commands.change_ai_model import app as ai_model_app
+from notee.cli.commands.change_ai_setup import app as ai_setup_app
 from typer import Typer
 
 app = Typer()
@@ -20,10 +22,13 @@ app.add_typer(movie_app)
 app.add_typer(source_app)
 app.add_typer(todo_app)
 app.add_typer(search_app)
-app.add_typer(togle_app)
 app.add_typer(scan_app)
 app.add_typer(open_app)
+app.add_typer(togle_app)
 app.add_typer(ask_app)
+app.add_typer(ai_setup_app)
+app.add_typer(ai_model_app)
+
 
 
 if __name__ == "__main__":

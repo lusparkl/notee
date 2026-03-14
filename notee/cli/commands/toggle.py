@@ -34,7 +34,7 @@ def togle_different_folders(
         on: bool = typer.Option(None, "--on", help="Enable different folders."),
         off: bool = typer.Option(None, "--off", help="Disable different folders.")
 ):
-    """Togle between creating folder for each tipe of template or store all notes in core folder.
+    """Toggle between creating folder for each tipe of template or store all notes in core folder.
     --on - Enable different folders.
     --off - Disable different folders.
     """
@@ -65,7 +65,10 @@ def togle_different_folders(
         on: bool = typer.Option(None, "--on", help="Enable different folders."),
         off: bool = typer.Option(None, "--off", help="Disable different folders.")
 ):
-    
+    """Toggle between using ai module and not.
+    --on - Enable ai module.
+    --off - Disable ai module.
+    """
     if bool(on) == bool(off):
         send_error("Use only --on or --off flags please.")
         return
