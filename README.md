@@ -15,6 +15,7 @@ Sometimes I have an idea that comes from nowhere and to note it I have to open m
 
 ## How to use
 
+! **Requires python version between 3.12-3.14, it might work on older ones but won't work on 1.14.. because of chroma db bug**
 1. Install package by running `pipx install notee`.
 2. Run `notee setup` and go throught instuctions in the console.
 
