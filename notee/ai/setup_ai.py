@@ -30,7 +30,7 @@ def setup_ai() -> list:
             api_key = typer.prompt(">")
             
             if not openai_apikey_check(api_key):
-                setup_ai()
+                return setup_ai()
 
             return ["OpenAI", "gpt-4.1-mini-2025-04-14", api_key]
 
@@ -39,7 +39,7 @@ def setup_ai() -> list:
             api_key = typer.prompt(">")   
 
             if not gemini_apikey_check(api_key):
-                setup_ai()
+                return setup_ai()
 
             return ["Google Gemini", "gemini-2.5-flash", api_key]
 
