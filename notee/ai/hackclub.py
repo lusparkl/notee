@@ -14,7 +14,8 @@ def hackclub_request(query):
     )
 
     if not hackclub_apikey_check(api_key):
-        send_error("Your HackClub api key is not valid. Please change it with <notee change_api_key>.")
+        send_error("Your HackClub api key is not valid. Please change it with <notee setup_ai>.")
+        return
 
     response = client.chat.send(
         model=model,

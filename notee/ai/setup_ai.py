@@ -48,6 +48,6 @@ def setup_ai() -> list:
             api_key = typer.prompt(">")
 
             if not hackclub_apikey_check(api_key):
-                setup_ai()
+                return setup_ai()
 
             return ["HackClub API", "google/gemini-2.5-flash", api_key] 

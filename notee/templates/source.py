@@ -15,7 +15,7 @@ def create_source_note(title: str, notes: str = None, tags: str = None, links: s
 
 ## Links
 
-{process_links if links else ""}
+{process_links(links) if links else ""}
 """
     config = get_config()
     file = MarkDownFile(name=title, dirname=config["patches"]["source"])

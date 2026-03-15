@@ -11,7 +11,7 @@ def openai_request(query) -> str:
     client = openai.Client(api_key=api_key)
 
     if not openai_apikey_check(api_key):
-        send_error("Your openAI api key is not valid. Please change it with <notee change_api_key>.")
+        send_error("Your openAI api key is not valid. Please change it with <notee setup_ai>.")
         return
 
     responce = client.responses.create(

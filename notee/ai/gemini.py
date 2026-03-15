@@ -11,7 +11,8 @@ def gemini_request(query):
     client = genai.Client(api_key=api_key)
 
     if not gemini_apikey_check(api_key):
-        send_error("Your Gemini api key is not valid. Please change it with <notee change_api_key>.")
+        send_error("Your Gemini api key is not valid. Please change it with <notee setup_ai>.")
+        return
     
     responce = client.models.generate_content(
         model=model,
